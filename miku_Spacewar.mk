@@ -13,6 +13,8 @@ $(call inherit-product, device/nothing/Spacewar/device.mk)
 
 # Inherit some common Miku stuff
 $(call inherit-product, vendor/miku/build/product/miku_product.mk)
+MIKU_MASTER := shin32
+MIKU_GAPPS := true
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := miku_Spacewar
