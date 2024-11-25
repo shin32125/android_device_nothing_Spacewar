@@ -49,6 +49,3 @@
 
 # Libperf
 /vendor/bin/hw/android\.hardware\.power-service\.nothing-libperfmgr   u:object_r:hal_power_default_exec:s0
-
-# zram
-/dev/block/zram0 u:object_r:swap_block_device:s0
