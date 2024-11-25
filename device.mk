@@ -21,6 +21,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
 
+# RRO (evo)
+PRODUCT_PACKAGES += \
+    PixysFrameworksSpacewar \
+    PixysSystemUISpacewar
+
 # RRO (Spacewar)
 PRODUCT_PACKAGES += \
     SpacewarCarrierConfig \
