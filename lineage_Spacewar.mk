@@ -25,6 +25,9 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 TARGET_GAPPS_ARCH := arm64
 TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_USES_PICO_GAPPS := true
+TARGET_USES_NOTHING_CAMERA := true
+TARGET_BUILD_APERTURE_CAMERA := false
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := lineage_Spacewar
