@@ -17,9 +17,6 @@ $(call inherit-product, vendor/nothing/Spacewar/Spacewar-vendor.mk)
 # Storage
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# NT Camera
-$(call inherit-product, vendor/nothing/camera/nothing-camera.mk)
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
@@ -45,7 +42,6 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/lineage/interfaces/power-libperfmgr \
     vendor/qcom/opensource/usb/etc
 
 # A/B
@@ -425,7 +421,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr \
+    android.hardware.power-service.nothing-libperfmgr \
     android.hardware.power@1.3.vendor
 
 PRODUCT_COPY_FILES += \
