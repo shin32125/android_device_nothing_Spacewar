@@ -54,7 +54,7 @@ function configure_zram_parameters() {
 	fi
 
 	if [ "$low_ram" == "true" ]; then
-		echo zstd > /sys/block/zram0/comp_algorithm
+		echo lz4 > /sys/block/zram0/comp_algorithm
 	fi
 
 	if [ -f /sys/block/zram0/disksize ]; then
@@ -125,7 +125,7 @@ function configure_memory_parameters() {
 
 	configure_zram_parameters
 	configure_read_ahead_kb_values
-	echo zstd > /sys/block/zram0/comp_algorithm
+	echo lz4 > /sys/block/zram0/comp_algorithm
 	echo 85 > /proc/sys/vm/swappiness
 
         # Disable wsf  beacause we are using efk.
