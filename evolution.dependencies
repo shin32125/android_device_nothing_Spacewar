@@ -12,10 +12,6 @@
     "target_path" : "vendor/nothing/Spacewar"
   },
   {
-    "repository"  : "hardware_dolby",
-    "target_path" : "hardware/dolby"
-  },
-  {
     "repository"  : "nyxalune/vendor_nothing_Spacewar",
     "remote"      : "github-non-los",
     "target_path" : "vendor/nothing/Spacewar"
