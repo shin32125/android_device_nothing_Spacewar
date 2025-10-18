@@ -218,7 +218,7 @@ $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/nothing:libudfps_ext
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health-service.qti
-    
+
 # libwpa_client
 PRODUCT_PACKAGES += \
     libwpa_client
@@ -291,17 +291,9 @@ PRODUCT_PACKAGES += \
 # Nt-fwk
 $(call inherit-product, hardware/nothing/nt-fwk/nt-fwk.mk)
 
-# Perf
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.perf@2.2.vendor
-
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr \
-    libqti-perfd-client
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/perf/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+    android.hardware.power-service-qti
 
 # PowerShare
 PRODUCT_PACKAGES += \
