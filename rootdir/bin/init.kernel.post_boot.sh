@@ -125,8 +125,8 @@ function configure_memory_parameters() {
 
 	configure_zram_parameters
 	configure_read_ahead_kb_values
- echo 1 > /sys/block/zram1/reset
- echo lz4 > /sys/block/zram0/comp_algorithm
+    echo 1 > /sys/block/zram1/reset
+    echo lz4 > /sys/block/zram0/comp_algorithm
 	echo 100 > /proc/sys/vm/swappiness
 
         # Disable wsf  beacause we are using efk.
