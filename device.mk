@@ -18,9 +18,6 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
-# NT Camera
-$(call inherit-product, vendor/nothing/camera/nothing-camera.mk)
-
 #Call the Dolby Setup
 #$(call inherit-product, hardware/dolby/dolby.mk)
 
@@ -192,9 +189,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@1.0.vendor \
     libutilscallstack.vendor:64 \
     vendor.qti.hardware.camera.postproc@1.0.vendor
-
-PRODUCT_PACKAGES += \
-    libui-v34
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.system_ext.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries.txt
