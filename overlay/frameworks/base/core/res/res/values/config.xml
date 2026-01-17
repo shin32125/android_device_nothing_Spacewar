@@ -468,6 +468,11 @@
     <!-- Colon separated list of package names that should be granted Notification Listener access -->
     <string name="config_defaultListenerAccessPackages" translatable="false">co.aospa.glyph</string>
 
+    <!-- Flag specifying whether WFC over IMS should be available for carrier: independent of
+         carrier provisioning. If false: hard disabled. If true: then depends on carrier
+         provisioning, availability etc -->
+    <bool name="config_carrier_wfc_ims_available">true</bool>
+
     <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
@@ -573,23 +578,22 @@
          Possible values: 3, 3.1, 3.2, 4, 4.1, 4.2 -->
 
     <!-- Should we vibrate on an icon animation of the shelf. This should only be active if the
-    vibrator is capable of subtle vibrations -->
-    <bool name="config_vibrateOnIconAnimation">true</bool>
-
+          vibrator is capable of subtle vibrations -->
+     <bool name="config_vibrateOnIconAnimation">true</bool>
+    
     <!-- Enables or disables haptic effect when the text insertion/selection handle is moved
-    manually by the user. Off by default, since the expected haptic feedback may not be
-    available on some devices. -->
+         manually by the user. Off by default, since the expected haptic feedback may not be
+         available on some devices. -->
     <bool name="config_enableHapticTextHandle">true</bool>
-
+    
     <!--Useful if you want to improve signal reception -->
     <bool name="config_ignoreRssnrSignalLevel">true</bool>
 
-
     <!-- Whether device implements proximity sensor based checks to prevent
-    accidental unlocks when the screen is off. -->
+         accidental unlocks when the screen is off. -->
     <bool name="config_proximityCheckOnFpsUnlock">true</bool>
 
     <!-- Whether WM DisplayContent supports high performance transitions
-    (lower-end devices may want to disable) -->
+         (lower-end devices may want to disable) -->
     <bool name="config_deviceSupportsHighPerfTransitions">true</bool>
 </resources>
