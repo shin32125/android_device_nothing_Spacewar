@@ -7,13 +7,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # Setup dalvik vm configs
-PRODUCT_VENDOR_PROPERTIES += \
-    dalvik.vm.heapstartsize?=16m \
-    dalvik.vm.heapgrowthlimit?=384m \
-    dalvik.vm.heapsize?=512m \
-    dalvik.vm.heaptargetutilization?=0.75 \
-    dalvik.vm.heapminfree?=512k \
-    dalvik.vm.heapmaxfree?=8m
+$(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
@@ -30,27 +24,6 @@ PRODUCT_PACKAGES += \
     NcmTetheringOverlay
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
-
-# Logging
-SPAMMY_LOG_TAGS := \
-    MiStcImpl \
-    SDM \
-    SDM-histogram \
-    SRE \
-    WifiHAL \
-    cnss-daemon \
-    libcitsensorservice@2.0-impl \
-    libsensor-displayalgo \
-    libsensor-parseRGB \
-    libsensor-ssccalapi \
-    sensors \
-    vendor.qti.hardware.display.composer-service \
-    vendor.xiaomi.sensor.citsensorservice@2.0-service
-
-ifneq ($(TARGET_BUILD_VARIANT),eng)
-PRODUCT_VENDOR_PROPERTIES += \
-    $(foreach tag,$(SPAMMY_LOG_TAGS),log.tag.$(tag)=E)
-endif
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -80,7 +53,6 @@ PRODUCT_PACKAGES += \
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
-
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 31
@@ -155,19 +127,29 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio-impl \
     android.hardware.soundtrigger@2.3-impl \
     audio.bluetooth.default \
+    audio.primary.lahaina \
     audio.r_submix.default \
     audio.usb.default \
     audioadsprpcd \
+    liba2dpoffload \
     libaudiopreprocessing \
+    libbatterylistener \
     libbundlewrapper \
+    libcomprcapture \
     libdownmix \
     libdynproc \
     libeffectproxy \
+    libexthwplugin \
+    libhdmiedid \
+    libhfp \
     libldnhncr \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libreverbwrapper \
+    libsndmonitor \
+    libspkrprot \
+    libssrec \
     libtinycompress \
     libvisualizer \
     libvolumelistener \
@@ -180,16 +162,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_policy_configuration_a2dp_offload_disabled.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_a2dp_offload_disabled.xml \
     $(LOCAL_PATH)/configs/audio/mixer_paths_yupikqrd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_yupik/mixer_paths_yupikqrd.xml \
     $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_yupik/audio_effects.xml \
-    $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml
+    $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
+    $(LOCAL_PATH)/configs/audio/audio_platform_info_yupikqrd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_yupik/audio_platform_info_yupikqrd.xml \
+    $(LOCAL_PATH)/configs/audio/audio_platform_info_qrd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info_qrd.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml
-
-
-$(call soong_config_set_bool,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
 
 # Boot control
 PRODUCT_PACKAGES += \
@@ -200,15 +181,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
-    libcamera_metadata_shim \
-    vendor.qti.hardware.camera.device@1.0.vendor \
-    libutilscallstack.vendor:64 \
-    vendor.qti.hardware.camera.postproc@1.0.vendor
-
-$(call soong_config_set_bool,camera,override_format_from_reserved,true)
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/public.libraries.system_ext.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries.txt
+    vendor.qti.hardware.camera.device@1.0.vendor
 
 $(call soong_config_set,camera,override_format_from_reserved,true)
 
@@ -219,9 +192,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service \
     vendor.qti.hardware.memtrack-service
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/displayconfig/display_id_4630946480328692354.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946480328692354.xml
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -241,10 +211,6 @@ $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/nothing:libudfps_ext
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health-service.qti
-    
-# libwpa_client
-PRODUCT_PACKAGES += \
-    libwpa_client
 
 # HotwordEnrollement
 PRODUCT_COPY_FILES += \
@@ -256,7 +222,6 @@ PRODUCT_PACKAGES += \
     fstab.default.vendor_ramdisk \
     init.class_main.sh \
     init.kernel.post_boot.sh \
-    init.Spacewar.perf.rc \
     init.qcom.rc \
     init.qcom.sh \
     init.qcom.usb.rc \
@@ -298,7 +263,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml
 
 
-$(call soong_config_set_bool,stagefright,target_disable_thumbnail_block_model,true)
+$(call soong_config_set,stagefright,target_disable_thumbnail_block_model,true)
 
 # Native libraries whitelist
 PRODUCT_COPY_FILES += \
@@ -317,10 +282,6 @@ PRODUCT_PACKAGES += \
 
 # Nt-fwk
 $(call inherit-product, hardware/nothing/nt-fwk/nt-fwk.mk)
-
-# IRQ balance config
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # Power
 PRODUCT_PACKAGES += \
