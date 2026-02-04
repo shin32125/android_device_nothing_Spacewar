@@ -59,7 +59,7 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Paranoid Glyph
 PRODUCT_PACKAGES += \
-    ParanoidGlyphPhone1 \
+    ParanoidGlyph \
     GlyphAdapter
 
 # Partitions
