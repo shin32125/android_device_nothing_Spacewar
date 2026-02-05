@@ -15,12 +15,24 @@ $(call inherit-product, hardware/qcom-caf/common/common.mk)
 # Get non-open-source specific aspects
 $(call inherit-product, vendor/nothing/Spacewar/Spacewar-vendor.mk)
 
+# NT Camera
+$(call inherit-product, vendor/nothing/camera/nothing-camera.mk)
+
+PRODUCT_COPY_FILES += \
+    vendor/nothing/camera/proprietary/system/etc/permissions/NTCamera-permissions.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/NTCamera-permissions.xml \
+    vendor/nothing/camera/proprietary/system/etc/permissions/NTCamera-google-permissions.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/NTCamera-google-permissions.xml \
+    vendor/nothing/camera/proprietary/system/etc/permissions/privapp-permissions-NothingExperience.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/privapp-permissions-NothingExperience.xml \
+    vendor/nothing/Spacewar/proprietary/vendor/etc/camera/vidhance_calibration:$(TARGET_COPY_OUT_VENDOR)/etc/camera/vidhance_calibration \
+    vendor/nothing/Spacewar/proprietary/vendor/etc/camera/camera_feature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_feature.xml \
+    vendor/nothing/Spacewar/proprietary/vendor/etc/camera/camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_config.xml
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_PACKAGES += \
+    DeviceAsWebcamResTarget \
     NcmTetheringOverlay
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
@@ -64,6 +76,9 @@ PRODUCT_PACKAGES += \
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Camera
+TARGET_BUILD_DEVICE_AS_WEBCAM := true
 
 # Partitions
 PRODUCT_PACKAGES += \
@@ -182,8 +197,15 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
     vendor.qti.hardware.camera.device@1.0.vendor
+    
+PRODUCT_PACKAGES += \
+    libui-v34
 
 $(call soong_config_set_bool,camera,override_format_from_reserved,true)
+$(call soong_config_set,libcameraservice,ext_lib,//$(LOCAL_PATH):libcameraservice_extension.Spacewar)
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/public.libraries.system_ext.txt:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/public.libraries.txt
 
 # Display
 PRODUCT_PACKAGES += \
@@ -192,6 +214,9 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service \
     vendor.qti.hardware.memtrack-service
+
+# Dolby
+$(call inherit-product, hardware/nothing/dolby/dolby.mk)
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -222,6 +247,7 @@ PRODUCT_PACKAGES += \
     fstab.default.vendor_ramdisk \
     init.class_main.sh \
     init.kernel.post_boot.sh \
+    init.Spacewar.perf.rc \
     init.qcom.rc \
     init.qcom.sh \
     init.qcom.usb.rc \
@@ -233,6 +259,10 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc \
     init.target.rc \
     ueventd.qcom.rc
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init.power.silence.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.power.silence.rc \
+    $(LOCAL_PATH)/rootdir/etc/init.nt.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.nt.rc
 
 # IPACM
 PRODUCT_PACKAGES += \
@@ -262,7 +292,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_profiles_yupik_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_yupik_v1.xml \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml
 
-
 $(call soong_config_set_bool,stagefright,target_disable_thumbnail_block_model,true)
 
 # Native libraries whitelist
@@ -282,6 +311,10 @@ PRODUCT_PACKAGES += \
 
 # Nt-fwk
 $(call inherit-product, hardware/nothing/nt-fwk/nt-fwk.mk)
+
+# IRQ balance config
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # Power
 PRODUCT_PACKAGES += \

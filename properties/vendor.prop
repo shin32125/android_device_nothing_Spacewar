@@ -85,9 +85,21 @@ persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true
 persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=true
 persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support=true
 ro.bluetooth.a2dp_offload.supported=true
+ro.bluetooth.powerstats.disable=true
 
 # Camera
-vendor.camera.aux.packagelist=com.snapchat.android
+persist.vendor.camera.eis.enable=1
+persist.vendor.camera.is_type=4
+persist.vendor.camera.aux.packagelist=*
+persist.vendor.camera.mfnr.enable=0
+persist.vendor.camera.enableUBWC=0
+persist.camera.aux.packagelist=*
+persist.vendor.farf.enable=0
+persist.vendor.qdsp.log.disable=1
+persist.vendor.camera.mfnr.enable=0
+persist.vendor.camera.enableUBWC=0
+persist.vendor.camera.isp.debug=0
+persist.vendor.camera.llvd.enable=0
 
 # Crypto
 ro.crypto.dm_default_key.options_format.version=2
@@ -118,6 +130,18 @@ vendor.gralloc.disable_ubwc=0
 persist.vendor.dpm.idletimer.mode=default
 persist.vendor.dpmhalservice.enable=1
 
+# Fling
+ro.min.fling_velocity=160
+ro.max.fling_velocity=20000
+ro.max.fling_velocity=20000
+ro.vendor.qti.cgroup_follow.enable=true
+persist.vendor.qti.inputopts.enable=true
+persist.vendor.qti.inputopts.movetouchslop=0.6
+ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0
+
+# FRP
+ro.frp.pst=/dev/block/bootdevice/by-name/frp
+
 # FUSE passthrough
 persist.sys.fuse.passthrough.enable=true
 
@@ -125,14 +149,10 @@ persist.sys.fuse.passthrough.enable=true
 vendor.gatekeeper.disable_spu=true
 
 # Graphics
-debug.graphics.game_default_frame_rate.disabled=1
 debug.sf.predict_hwc_composition_strategy=0
 debug.sf.treat_170m_as_sRGB=1
-debug.sf.disable_backpressure=1
-debug.sf.enable_hwc_vds=0
 debug.sf.disable_client_composition_cache=0
 debug.sf.enable_advanced_sf_phase_offset=1
-debug.sf.disable_backpressure=1
 debug.sf.enable_gl_backpressure=0
 debug.sf.frame_rate_multiple_threshold=120
 debug.sf.high_fps_early_gl_phase_offset_ns=-2000000
@@ -155,20 +175,10 @@ ro.surface_flinger.set_touch_timer_ms=4000
 ro.surface_flinger.set_display_power_timer_ms=1000
 ro.surface_flinger.support_kernel_idle_timer=true
 ro.surface_flinger.supports_background_blur=1
-ro.surface_flinger.uclamp.min=205
 ro.surface_flinger.use_color_management=true
 ro.surface_flinger.use_content_detection_for_refresh_rate=true
 ro.surface_flinger.wcg_composition_dataspace=143261696
 persist.mm.enable.prefetch=true
-
-# Fling
-ro.min.fling_velocity=160 
-ro.max.fling_velocity=20000
-ro.max.fling_velocity=20000 
-ro.vendor.qti.cgroup_follow.enable=true 
-persist.vendor.qti.inputopts.enable=true 
-persist.vendor.qti.inputopts.movetouchslop=0.6 
-ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0
 
 # HWUI
 ro.hwui.render_ahead=30
@@ -185,12 +195,12 @@ ro.hwui.texture_cache_flushrate=0.4
 ro.hwui.texture_cache_size=72
 debug.hwui.use_hint_manager=true
 debug.hwui.target_cpu_time_percent=30
-debug.hwui.renderer=skiavk
+debug.hwui.renderer=skiagl
 debug.hwui.show_overdraw=false
 debug.hwui.use_triple_buffering=true
-debug.renderengine.vulkan=true
+debug.renderengine.vulkan=false
 debug.renderengine.graphite=true
-debug.renderengine.backend=skiavkthreaded
+debug.renderengine.backend=skiaglthreaded
 debug.stagefright.renderengine.backend=threaded
 renderthread.skia.reduceopstasksplitting=true
 
@@ -199,6 +209,7 @@ ro.incremental.enable=yes
 
 # Media
 debug.stagefright.c2inputsurface=-1
+debug.sdm.support_writeback=0
 
 # Netflix
 vendor.netflix.bsp_rev=Q6450-36256-1
@@ -207,11 +218,11 @@ vendor.netflix.bsp_rev=Q6450-36256-1
 ro.oem_unlock_supported=1
 
 # Perf
-ro.vendor.extension_library=libqti-perfd-client.so
 vendor.perf.framepacing.enable=1
 
 # Performance
 debug.performance.tuning=1
+ro.vendor.extension_library=libqti-perfd-client.so
 
 # QTEE
 persist.vendor.qteeconnector.retrying_interval=30
@@ -227,14 +238,40 @@ persist.vendor.radio.rat_on=combine
 persist.vendor.radio.sib16_support=1
 ro.telephony.default_network=33,33
 
+# Ram
+persist.sys.purgeable_assets=1
+
 # Resampler
 af.resampler.quality=7
+
+# ScrollOptimizer
+persist.sys.perf.scroll_opt=true
+persist.sys.perf.scroll_opt.heavy_app=1
 
 # Sensors
 persist.vendor.sensors.allow_non_default_discovery=true
 persist.vendor.sensors.debug.hal=0
 persist.vendor.sensors.on_change_sample_period=true
 persist.vendor.sensors.sync_request=true
+
+# Silence spammy logs
+persist.log.tag.QTIPowerHAL=S
+persist.log.tag.QTI_PowerHAL=S
+persist.log.tag.QTI.PowerHAL=S
+persist.log.tag.ANDR-PERF-REQUEST=S
+persist.log.tag.ANDR-PERF-MPCTL=S
+persist.log.tag.QTI_PowerHAL=S
+persist.log.tag.statsd=S
+persist.log.tag.WifiVendorHal=S
+persist.log.tag.AudioPolicyConfig=S
+persist.log.tag.AudioPolicyService=S
+persist.log.tag.DisplayFeatureHal=S
+persist.log.tag.qti_sensors_hal=S
+persist.log.tag.BluetoothAdapterService=S
+persist.vendor.wifi.log_level=0
+persist.vendor.wifi.debug=0
+persist.vendor.cnss.log_level=0
+persist.vendor.qcom.wlan.debug=0
 
 # SoC
 ro.soc.manufacturer=QTI
@@ -243,6 +280,7 @@ ro.soc.manufacturer=QTI
 persist.vendor.ssr.restart_level=ALL_ENABLE
 
 # USB
+ro.usb.uvc.enabled=true
 sys.usb.mtp.batchcancel=1
 vendor.usb.diag.func.name=ffs
 vendor.usb.dpl.inst.name=dpl

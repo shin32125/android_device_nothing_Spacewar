@@ -98,14 +98,25 @@ vendor/lib/hw/com.dsi.ant@1.0-impl.so
 vendor/lib64/hw/com.dsi.ant@1.0-impl.so
 
 # Audio
-vendor/lib/soundfx/libdiraceffect_NT.so
 vendor/lib/lib_lvacfs.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
-vendor/lib/libdirac.so
 vendor/lib/liblvacfs_wrapper.so
+vendor/lib/libhfp.so
+vendor/lib/libqtigef.so
+vendor/lib/libsndmonitor.so
+vendor/lib/libspkrprot.so
+vendor/lib/libssrec.so
+vendor/lib/libsurround_3mic_proc.so
 vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
+
+# Dirac
+system/etc/sysconfig/preinstalled-packages-audioeffect.xml
+system/priv-app/NothingAudioEffectService/NothingAudioEffectService.apk
+vendor/etc/dirac/dirac_resource.dar
+vendor/etc/dirac/interface.json
+vendor/lib/libdirac.so
 
 # Audio amplifier
 vendor/firmware/tfa98xx.cnt
@@ -310,11 +321,17 @@ vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so
 vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so
 
 # Camera
+system/etc/public.libraries.txt
+system_ext/etc/permissions/advancedSample_camera_extensions.xml
+system_ext/framework/androidx.camera.extensions.impl.advanced.jar
+system_ext/lib/libencoderjpeg_jni.so
+system_ext/lib64/libencoderjpeg_jni.so
 vendor/etc/camera/camxoverridesettings.txt
 vendor/etc/camera/vidhance_calibration
 vendor/lib/libcamxexternalformatutils.so
 vendor/lib/libcvp2_1.so
 vendor/lib/libcvp_common.so
+vendor/lib/libmpbase.so
 vendor/lib64/camera/components/com.arcsoft.node.capturebokeh.so
 vendor/lib64/camera/components/com.arcsoft.node.hdr.so
 vendor/lib64/camera/components/com.arcsoft.node.picauto.so
@@ -380,9 +397,50 @@ vendor/lib64/camera/com.qti.eeprom.abra_qtech_p24c128e_s5kjn1_eeprom.so
 vendor/lib64/camera/com.qti.eeprom.abra_qtech_p24c64f_imx471_eeprom.so
 vendor/lib64/camera/com.qti.eeprom.abra_truly_p24c64f_imx471_eeprom.so
 vendor/lib64/camera/com.qti.eeprom.gt24p128c2csli_imx766.so
+vendor/lib64/camera/com.qti.eeprom.irs2381c_polar.so
+vendor/lib64/camera/com.qti.eeprom.truly_cmb433.so
+vendor/lib64/camera/com.qti.flash.lm3644.so
 vendor/lib64/camera/com.qti.sensor.abra_qtech_imx471_front.so
 vendor/lib64/camera/com.qti.sensor.abra_qtech_imx766_wide.so
 vendor/lib64/camera/com.qti.sensor.abra_qtech_s5kjn1_uw.so
+vendor/lib64/camera/com.qti.sensor.imx318.so
+vendor/lib64/camera/com.qti.sensor.imx334.so
+vendor/lib64/camera/com.qti.sensor.imx362.so
+vendor/lib64/camera/com.qti.sensor.imx376.so
+vendor/lib64/camera/com.qti.sensor.imx386.so
+vendor/lib64/camera/com.qti.sensor.imx476.so
+vendor/lib64/camera/com.qti.sensor.imx481.so
+vendor/lib64/camera/com.qti.sensor.imx519.so
+vendor/lib64/camera/com.qti.sensor.imx563.so
+vendor/lib64/camera/com.qti.sensor.imx576.so
+vendor/lib64/camera/com.qti.sensor.imx577.so
+vendor/lib64/camera/com.qti.sensor.imx586.so
+vendor/lib64/camera/com.qti.sensor.imx766.so
+vendor/lib64/camera/com.qti.sensor.max7366_6dof.so
+vendor/lib64/camera/com.qti.sensor.max7366_eyetrack.so
+vendor/lib64/camera/com.qti.sensor.max7366_ov6211.so
+vendor/lib64/camera/com.qti.sensor.max7366_ov9282.so
+vendor/lib64/camera/com.qti.sensor.ov12a10_front.so
+vendor/lib64/camera/com.qti.sensor.ov12a10.so
+vendor/lib64/camera/com.qti.sensor.ov6211_master.so
+vendor/lib64/camera/com.qti.sensor.ov6211_slave.so
+vendor/lib64/camera/com.qti.sensor.ov7251.so
+vendor/lib64/camera/com.qti.sensor.ov8856_master.so
+vendor/lib64/camera/com.qti.sensor.ov8856_slave.so
+vendor/lib64/camera/com.qti.sensor.ov8856.so
+vendor/lib64/camera/com.qti.sensor.ov9282_master.so
+vendor/lib64/camera/com.qti.sensor.ov9282_slave.so
+vendor/lib64/camera/com.qti.sensor.ov13855.so
+vendor/lib64/camera/com.qti.sensor.ov13880.so
+vendor/lib64/camera/com.qti.sensor.s5k2l7.so
+vendor/lib64/camera/com.qti.sensor.s5k2x5sp.so
+vendor/lib64/camera/com.qti.sensor.s5k3m5.so
+vendor/lib64/camera/com.qti.sensor.s5k3p9.so
+vendor/lib64/camera/com.qti.sensor.s5k4h7.so
+vendor/lib64/camera/com.qti.sensor.s5k5e9yu05.so
+vendor/lib64/camera/com.qti.sensor.s5k5e9yx04.so
+vendor/lib64/camera/com.qti.sensor.s5k33dxx.so
+vendor/lib64/camera/com.qti.sensor.s5kjd1sp.so
 vendor/lib64/camera/com.qti.sensormodule.abra_qtech_imx471_front.bin
 vendor/lib64/camera/com.qti.sensormodule.abra_qtech_imx766_wide.bin
 vendor/lib64/camera/com.qti.sensormodule.abra_qtech_s5kjn1_uw.bin
@@ -436,19 +494,33 @@ vendor/lib64/com.qualcomm.mcx.distortionmapper.so
 vendor/lib64/com.qualcomm.mcx.linearmapper.so
 vendor/lib64/com.qualcomm.mcx.policy.mfl.so
 vendor/lib64/com.qualcomm.qti.mcx.usecase.extension.so
+vendor/lib64/hw/camera.qcom.so
+vendor/lib64/hw/com.qti.chi.override.so
+vendor/lib64/libPlaneSegmentationWrapper.so
 vendor/lib64/libSonyIMX471RmscLibrary.so
 vendor/lib64/libaidenoiser.so
 vendor/lib64/libaidenoiserv2.so
+vendor/lib64/libarcsoft_aiscenedetection.so
+vendor/lib64/libarcsoft_beautyshot.so
+vendor/lib64/libarcsoft_dark_vision_raw.so
 vendor/lib64/libarcsoft_dualcam_refocus_image.so
 vendor/lib64/libarcsoft_dualcam_refocus_video.so
 vendor/lib64/libarcsoft_hdr_detection.so
 vendor/lib64/libarcsoft_high_dynamic_range.so
+vendor/lib64/libarcsoft_low_light_hdr.so
+vendor/lib64/libarcsoft_mf_superresolution.so
 vendor/lib64/libarcsoft_night_video.so
+vendor/lib64/libarcsoft_portrait_distortion_correction.so
+vendor/lib64/libarcsoft_portrait_super_night_raw.so
 vendor/lib64/libarcsoft_singlecam_bokeh.so
+vendor/lib64/libarcsoft_super_night_raw.so
+vendor/lib64/libarcsoft_superportrait.so
+vendor/lib64/libarcsoft_watermark.so
 vendor/lib64/libbitmlengine.so
 vendor/lib64/libbitmlenginev2.so
 vendor/lib64/libcamera_nn_stub.so
 vendor/lib64/libcamerapostproc.so
+vendor/lib64/libcamxextension_night.so
 vendor/lib64/libcamxexternalformatutils.so
 vendor/lib64/libcamxfacialfeatures.so
 vendor/lib64/libcamxfdalgo.so
@@ -462,15 +534,16 @@ vendor/lib64/libcamxswprocessalgo.so
 vendor/lib64/libcamxtintlessalgo.so
 vendor/lib64/libchilog.so
 vendor/lib64/libcom.qti.chinodeutils.so
-vendor/lib64/libcvp2_1.so
-vendor/lib64/libcvp_common.so
-vendor/lib64/libcvp_util.so
-vendor/lib64/libcvpcpuRev_skel.so
 vendor/lib64/libdepthcomputation.so
+vendor/lib64/libeepromcutter.so
+vendor/lib64/libhdr_stub.so
+vendor/lib64/libhdrdynamic.so
+vendor/lib64/libhdrdynamicootf.so
 vendor/lib64/libipebpsstriping.so
 vendor/lib64/libipebpsstriping170.so
 vendor/lib64/libjpege.so
 vendor/lib64/libmctfengine_stub.so
+vendor/lib64/libmfec.so
 vendor/lib64/libmmcamera_bestats.so
 vendor/lib64/libmmcamera_cac3.so
 vendor/lib64/libmmcamera_faceproc.so
@@ -480,6 +553,7 @@ vendor/lib64/libmmcamera_mfnr.so
 vendor/lib64/libmmcamera_mfnr_t4.so
 vendor/lib64/libmmcamera_pdpc.so
 vendor/lib64/libmorpho_MotionSensor.so
+vendor/lib64/libmouth_mask_detection.arcsoft.so
 vendor/lib64/libmpbase.so
 vendor/lib64/libnanopb.so
 vendor/lib64/libofflinedump.so
@@ -502,7 +576,6 @@ vendor/lib64/libvidhance_active_ois.so
 vendor/lib64/libvidhance_stabilizer.so
 vendor/lib64/libvidhance_stabilizer_g4.so
 vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
-vendor/lib64/vendor.qti.hardware.cvp@1.0.so
 
 # Camera firmware
 vendor/firmware/CAMERA_ICP_170.elf
@@ -600,9 +673,61 @@ vendor/etc/init/vendor.qti.hardware.capabilityconfigstore@1.0-service.rc
 vendor/lib/hw/vendor.qti.hardware.capabilityconfigstore@1.0-impl.so
 vendor/lib64/hw/vendor.qti.hardware.capabilityconfigstore@1.0-impl.so
 
-# CVP models
+# CVP
 vendor/etc/cvp/v2.0/facedetection/model1.dat
 vendor/etc/cvp/v2.1/facedetection/model2.dat
+vendor/lib/libcvp2_1.so
+vendor/lib/libcvp_common.so
+vendor/lib64/libcvp2_1.so
+vendor/lib64/libcvp_common.so
+vendor/lib64/libcvpcpuRev_skel.so
+vendor/lib64/vendor.qti.hardware.cvp@1.0.so
+
+# CVP firmware
+vendor/firmware/evass-lt.b00
+vendor/firmware/evass-lt.b01
+vendor/firmware/evass-lt.b02
+vendor/firmware/evass-lt.b03
+vendor/firmware/evass-lt.b04
+vendor/firmware/evass-lt.b05
+vendor/firmware/evass-lt.b06
+vendor/firmware/evass-lt.b07
+vendor/firmware/evass-lt.b08
+vendor/firmware/evass-lt.b09
+vendor/firmware/evass-lt.b10
+vendor/firmware/evass-lt.b11
+vendor/firmware/evass-lt.b12
+vendor/firmware/evass-lt.b13
+vendor/firmware/evass-lt.b14
+vendor/firmware/evass-lt.b15
+vendor/firmware/evass-lt.b16
+vendor/firmware/evass-lt.b17
+vendor/firmware/evass-lt.b18
+vendor/firmware/evass-lt.b19
+vendor/firmware/evass-lt.mbn
+vendor/firmware/evass-lt.mdt
+vendor/firmware/evass.b00
+vendor/firmware/evass.b01
+vendor/firmware/evass.b02
+vendor/firmware/evass.b03
+vendor/firmware/evass.b04
+vendor/firmware/evass.b05
+vendor/firmware/evass.b06
+vendor/firmware/evass.b07
+vendor/firmware/evass.b08
+vendor/firmware/evass.b09
+vendor/firmware/evass.b10
+vendor/firmware/evass.b11
+vendor/firmware/evass.b12
+vendor/firmware/evass.b13
+vendor/firmware/evass.b14
+vendor/firmware/evass.b15
+vendor/firmware/evass.b16
+vendor/firmware/evass.b17
+vendor/firmware/evass.b18
+vendor/firmware/evass.b19
+vendor/firmware/evass.mbn
+vendor/firmware/evass.mdt
 
 # Display Calibration data
 vendor/etc/qdcm_calib_data_rm692e5_amoled_fhd+_120hz_cmd_mode_dsi_visionox_panel.xml
@@ -904,7 +1029,6 @@ vendor/firmware/yupik_ipa_fws.mdt
 
 # IRQ balance
 vendor/bin/msm_irqbalance
-vendor/etc/msm_irqbalance.conf
 
 # Kernel
 vendor/bin/vendor_modprobe.sh
@@ -1037,8 +1161,6 @@ vendor/lib/libqti-utils.so
 vendor/lib64/libperfconfig.so
 vendor/lib64/libperfgluelayer.so
 vendor/lib64/libperfioctl.so
-vendor/lib64/libqti-perfd-client.so
-vendor/lib64/libqti-perfd.so
 vendor/lib64/libqti-util.so
 vendor/lib64/libqti-utils.so
 
@@ -1510,7 +1632,7 @@ system_ext/lib64/libwfddisplayconfig.so|27f5d6e284edf05cc7776e5be010912973000ab9
 system_ext/lib64/libwfdmminterface.so|8d3d493fef797aef2feaab4e09e50250ddf5dc9a
 system_ext/lib64/libwfdmmsink.so|4569ce9941eb5d06db599146ed80b8a32d7cd97f
 system_ext/lib64/libwfdmmsrc_system.so|0cc970954800566baddbf760b153b027940180f5
-system_ext/lib64/libwfdnative.so;SYMLINK=system_ext/priv-app/WfdService/lib/arm64/libwfdnative.so|f2918bbd8e4c691299e840863e8cb502a47bb773
+system_ext/lib64/libwfdnative.so;SYMLINK=system_ext/priv-app/WfdService/lib/arm64/libwfdnative.so|9513bbbd813dd05fb063d3c9e72640a1bc9156c2|f2918bbd8e4c691299e840863e8cb502a47bb773
 system_ext/lib64/libwfdrtsp.so|1ab4fc5b75d25f551df3593d5856e6f7893a4176
 system_ext/lib64/libwfdservice.so|af0e31f17ed997a5d8bad64cdad486be28cb9f07
 system_ext/lib64/libwfdsinksm.so|cc899b719fa11d844c65908d7fdc18600451324d
